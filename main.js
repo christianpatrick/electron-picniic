@@ -13,9 +13,9 @@ function createWindow () {
     show: false,
     titleBarStyle: 'hiddenInset',
     width: 1000,
-    minWidth: 600,
-    height: 600,
-    minHeight: 400,
+    minWidth: 800,
+    height: 650,
+    minHeight: 650,
     webPreferences: {
       javascript: true,
       plugins: true,
@@ -23,10 +23,9 @@ function createWindow () {
     },
   })
 
-  $cssInclude = '#tabLayer{position:fixed;margin-top:-5px;height:45px;-webkit-app-region:drag;}.bodycontainer{padding-top:40px;}.newMenuTable{display:block;max-height:45px;}#qIconDiv{position:absolute;right:0;}#tabGroupMenuDiv{margin-left:65px;}';
-  $cssSearch = '.newsearchimg,#searchStr{padding-left:75px;}#searchdetailsform{position:fixed;width:100%;}#gsearchDiv{padding-top:70px;}';
+  $cssInclude = '.nav-side{min-width:78px;}.nav-side ul{margin-top:20px;}.nav-side .icon-nav-picniic{margin-left:5px;margin-right:5px;}.nav-top{margin-left:15px;}.dash-container{padding-left:15px;}';
 
-  mainWindow.loadURL('https://crm.zoho.com/')
+  mainWindow.loadURL('https://picniic.com/signin/main/')
 
   mainWindow.webContents.on('did-finish-load', function() {
     mainWindow.webContents.insertCSS($cssInclude)
@@ -37,10 +36,7 @@ function createWindow () {
   })
 
   mainWindow.webContents.on('dom-ready', function(e) {
-    mainWindow.webContents.executeJavaScript('document.getElementById("tabgrouparrow").style.marginLeft = "75px";')
-    setTimeout(function(){splash.destroy();mainWindow.show();}, 2000)
-    // search page override
-    mainWindow.webContents.insertCSS($cssSearch)
+    setTimeout(function(){splash.destroy();mainWindow.show();}, 500)
   })
 
   // Emitted when the window is closed.
@@ -128,87 +124,6 @@ function createMenu() {
       ],
     },
     {
-      label: 'Go',
-      submenu: [
-        {
-          label: 'Search',
-          accelerator: 'Shift+CmdOrCtrl+S',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("topbandSearchIcon").click()')
-          },
-        },
-        {
-          type: 'separator',
-        },
-        {
-          label: 'Home',
-          accelerator: 'Shift+CmdOrCtrl+Space',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Home").click()')
-          },
-        },
-        {
-          label: 'SalesInbox',
-          accelerator: 'Shift+CmdOrCtrl+I',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_SalesInbox").click()')
-          },
-        },
-        {
-          label: 'Feeds',
-          accelerator: 'Shift+CmdOrCtrl+F',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Feeds").click()')
-          },
-        },
-        {
-          label: 'Activities',
-          accelerator: 'Shift+CmdOrCtrl+E',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Activities").click()')
-          },
-        },
-        {
-          label: 'Visits',
-          accelerator: 'Shift+CmdOrCtrl+V',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Visits").click()')
-          },
-        },
-        {
-          type: 'separator',
-        },
-        {
-          label: 'Leads',
-          accelerator: 'Shift+CmdOrCtrl+L',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Leads").click()')
-          },
-        },
-        {
-          label: 'Accounts',
-          accelerator: 'Shift+CmdOrCtrl+A',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Accounts").click()')
-          },
-        },
-        {
-          label: 'Contacts',
-          accelerator: 'Shift+CmdOrCtrl+C',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Contacts").click()')
-          },
-        },
-        {
-          label: 'Deals',
-          accelerator: 'Shift+CmdOrCtrl+D',
-          click: () => {
-            mainWindow.webContents.executeJavaScript('document.getElementById("tab_Potentials").click()')
-          },
-        },
-      ],
-    },
-    {
       label: 'Window',
       role: 'window',
       submenu: [
@@ -231,13 +146,13 @@ function createMenu() {
         {
           label: `Built by christianpatrick`,
           click: () => {
-            shell.openExternal('https://github.com/christianpatrick/electron-zoho_crm');
+            shell.openExternal('https://github.com/christianpatrick/electron-picniic');
           },
         },
         {
           label: 'Have an Issue?',
           click: () => {
-            shell.openExternal('https://github.com/christianpatrick/electron-zoho_crm/issues');
+            shell.openExternal('https://github.com/christianpatrick/electron-picniic/issues');
           },
         },
       ],
@@ -333,6 +248,5 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-    mainWindow.webContents.executeJavaScript('document.getElementById("tab_Home").click()')
-    setTimeout(function(){mainWindow.show();}, 500)
+    mainWindow.show();
 })
