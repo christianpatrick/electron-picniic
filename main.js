@@ -23,7 +23,7 @@ function createWindow () {
     },
   })
 
-  $cssInclude = 'body{overflow-x:hidden;}.nav-top,.nav-side{-webkit-app-region:drag;}.nav-side{min-width:78px;}.nav-side ul{margin-top:20px;}.nav-side .icon-nav-picniic{margin-left:5px;margin-right:5px;}.nav-top{margin-left:15px;}section.container{padding-left:15px;}';
+  $cssInclude = 'body{overflow-x:hidden;}.nav-top,.nav-side{-webkit-app-region:drag;}.nav-side{min-width:78px;}.nav-side ul{margin-top:20px;}.nav-side .icon-nav-picniic{margin-left:5px;margin-right:5px;}.nav-top,.nav-action-menu{margin-left:15px;}.container{padding-left:15px;}';
 
   mainWindow.loadURL('https://picniic.com/signin/main/')
 
