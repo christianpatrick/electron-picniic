@@ -23,7 +23,7 @@ function createWindow () {
     },
   })
 
-  $cssInclude = '.nav-side{min-width:78px;}.nav-side ul{margin-top:20px;}.nav-side .icon-nav-picniic{margin-left:5px;margin-right:5px;}.nav-top{margin-left:15px;}.dash-container{padding-left:15px;}';
+  $cssInclude = 'body{overflow-x:hidden;}.nav-top,.nav-side{-webkit-app-region:drag;}.nav-side{min-width:78px;}.nav-side ul{margin-top:20px;}.nav-side .icon-nav-picniic{margin-left:5px;margin-right:5px;}.nav-top,.nav-action-menu{margin-left:15px;}.container{padding-left:15px;}.cal-container{padding-right:15px;}.cal-area{border-top-right-radius: 3px;border-bottom-right-radius: 3px;}';
 
   mainWindow.loadURL('https://picniic.com/signin/main/')
 
@@ -245,8 +245,12 @@ app.on('window-all-closed', function () {
   }
 })
 
+app.on('before-quit', function () {
+  mainWindow.destroy()
+})
+
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-    mainWindow.show();
+    mainWindow.show()
 })
